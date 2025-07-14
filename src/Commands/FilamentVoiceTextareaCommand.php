@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Ruelluna\FilamentVoiceTextarea\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentVoiceTextareaCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-voice-textarea';
 
     public $description = 'My command';
 

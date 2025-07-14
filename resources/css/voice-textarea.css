@@ -1,0 +1,96 @@
+/* Voice Textarea Component Styles */
+
+.voice-textarea-container {
+    position: relative;
+}
+
+/* Position the button relative to the textarea input */
+.fi-fo-textarea-input {
+    position: relative !important;
+    padding-right: 3rem !important;
+}
+
+.voice-textarea-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.375rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-weight: 600;
+    z-index: 10;
+    pointer-events: auto;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+}
+
+.voice-textarea-button:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+}
+
+.voice-textarea-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
+.voice-textarea-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Dark mode styles */
+.dark .voice-textarea-button {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dark .voice-textarea-button:hover {
+    background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dark .voice-textarea-button:focus {
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Listening state - red gradient */
+.voice-textarea-button.listening {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.voice-textarea-button.listening:hover {
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
+.dark .voice-textarea-button.listening {
+    background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+}
+
+.dark .voice-textarea-button.listening:hover {
+    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+}
+
+/* Pulse animation for listening state */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Ensure the textarea maintains its original Filament styling */
+.voice-textarea-container .fi-fo-textarea-input {
+    /* Preserve all original Filament textarea styles */
+}

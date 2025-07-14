@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Ruelluna\FilamentVoiceTextarea;
 
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
@@ -13,14 +13,15 @@ use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
-use VendorName\Skeleton\Testing\TestsSkeleton;
+use Ruelluna\FilamentVoiceTextarea\Commands\FilamentVoiceTextareaCommand;
+use Ruelluna\FilamentVoiceTextarea\Commands\PublishVoiceTextareaAssetsCommand;
+use Ruelluna\FilamentVoiceTextarea\Testing\TestsFilamentVoiceTextarea;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class FilamentVoiceTextareaServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'skeleton';
+    public static string $name = 'filament-voice-textarea';
 
-    public static string $viewNamespace = 'skeleton';
+    public static string $viewNamespace = 'filament-voice-textarea';
 
     public function configurePackage(Package $package): void
     {
@@ -36,7 +37,8 @@ class SkeletonServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub(':vendor_slug/:package_slug');
+                    ->publishAssets()
+                    ->askToStarRepoOnGitHub('ruelluna/filament-voice-textarea');
             });
 
         $configFileName = $package->shortName();
@@ -56,6 +58,9 @@ class SkeletonServiceProvider extends PackageServiceProvider
         if (file_exists($package->basePath('/../resources/views'))) {
             $package->hasViews(static::$viewNamespace);
         }
+
+        // Publish JavaScript assets
+        $package->hasAssets();
     }
 
     public function packageRegistered(): void {}
@@ -80,18 +85,18 @@ class SkeletonServiceProvider extends PackageServiceProvider
         if (app()->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
                 $this->publishes([
-                    $file->getRealPath() => base_path("stubs/skeleton/{$file->getFilename()}"),
-                ], 'skeleton-stubs');
+                    $file->getRealPath() => base_path("stubs/filament-voice-textarea/{$file->getFilename()}"),
+                ], 'filament-voice-textarea-stubs');
             }
         }
 
         // Testing
-        Testable::mixin(new TestsSkeleton);
+        Testable::mixin(new TestsFilamentVoiceTextarea);
     }
 
     protected function getAssetPackageName(): ?string
     {
-        return ':vendor_slug/:package_slug';
+        return 'ruelluna/filament-voice-textarea';
     }
 
     /**
@@ -100,9 +105,8 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('skeleton', __DIR__ . '/../resources/dist/components/skeleton.js'),
-            Css::make('skeleton-styles', __DIR__ . '/../resources/dist/skeleton.css'),
-            Js::make('skeleton-scripts', __DIR__ . '/../resources/dist/skeleton.js'),
+            Js::make('voice-textarea', __DIR__ . '/../resources/js/voice-textarea.js'),
+            Css::make('voice-textarea', __DIR__ . '/../resources/css/voice-textarea.css'),
         ];
     }
 
@@ -112,7 +116,8 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            SkeletonCommand::class,
+            FilamentVoiceTextareaCommand::class,
+            PublishVoiceTextareaAssetsCommand::class,
         ];
     }
 
@@ -146,7 +151,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_skeleton_table',
+            'create_filament-voice-textarea_table',
         ];
     }
 }

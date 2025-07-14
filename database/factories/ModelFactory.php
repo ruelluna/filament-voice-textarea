@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Database\Factories;
+namespace Ruelluna\FilamentVoiceTextarea\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
