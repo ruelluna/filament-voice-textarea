@@ -7,6 +7,25 @@
 
 A Filament plugin that provides a VoiceTextarea field component, allowing users to fill textarea fields using their microphone (voice-to-text) via the browser's built-in speech recognition API.
 
+## 🚀 Quick Start
+
+1. **Install the package:**
+   ```bash
+   composer require ruelluna/filament-voice-textarea
+   ```
+
+2. **Use in your forms:**
+   ```php
+   use Ruelluna\FilamentVoiceTextarea\Forms\Components\VoiceTextarea;
+
+   VoiceTextarea::make('description')
+       ->label('Description')
+       ->enableVoice()
+       ->required();
+   ```
+
+3. **That's it!** The microphone button will automatically appear in the lower right corner of your textarea.
+
 ## Features
 
 - 🎤 **Voice Recognition**: Use your microphone to dictate text into textarea fields
@@ -31,6 +50,23 @@ You can install the package via composer:
 composer require ruelluna/filament-voice-textarea
 ```
 
+### Automatic Asset Loading
+
+The package automatically loads all required assets (JavaScript, CSS, and views) when installed. **No manual asset publishing is required!**
+
+**What happens automatically:**
+- ✅ JavaScript and CSS assets are registered with Filament
+- ✅ Views are automatically available via the `filament-voice-textarea` namespace
+- ✅ Assets are loaded on-demand for optimal performance
+- ✅ Service provider is auto-discovered by Laravel
+
+**For package developers:**
+If you're developing the package locally, you can build the assets:
+```bash
+npm install
+npm run build
+```
+
 ### Quick Installation
 
 Run the installation command to set up everything automatically:
@@ -41,28 +77,24 @@ php artisan filament-voice-textarea:install
 
 This command will:
 - Publish the configuration file
-- Publish the JavaScript assets
 - Run any migrations (if applicable)
 - Ask if you want to star the repository on GitHub
 
-### Manual Installation
+### Manual Installation (Optional)
 
 If you prefer to install components manually:
 
-1. **Publish the assets:**
-```bash
-php artisan filament-voice-textarea:publish-assets
-```
-
-2. **Publish the config file (optional):**
+1. **Publish the config file (optional):**
 ```bash
 php artisan vendor:publish --tag="filament-voice-textarea-config"
 ```
 
-3. **Publish the views (optional):**
+2. **Publish the views (optional):**
 ```bash
 php artisan vendor:publish --tag="filament-voice-textarea-views"
 ```
+
+**Note:** Assets are automatically loaded and do not need to be published manually.
 
 ## Usage
 

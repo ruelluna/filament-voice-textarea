@@ -1,7 +1,11 @@
 @if($isVoiceEnabled)
     <div class="space-y-2" x-data="voiceTextarea()">
         <div class="relative">
-            @include('filament-forms::components.textarea')
+            {{-- Use the parent component's view instead of including manually --}}
+            {{ $getFieldWrapperView()::render([
+                'field' => $field,
+                'getExtraInputAttributeBag' => fn() => $getExtraInputAttributeBag(),
+            ]) }}
 
             <button
                 type="button"
@@ -25,5 +29,9 @@
         </div>
     </div>
 @else
-    @include('filament-forms::components.textarea')
+    {{-- Use the parent component's view instead of including manually --}}
+    {{ $getFieldWrapperView()::render([
+        'field' => $field,
+        'getExtraInputAttributeBag' => fn() => $getExtraInputAttributeBag(),
+    ]) }}
 @endif

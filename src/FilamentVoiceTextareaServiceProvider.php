@@ -58,7 +58,7 @@ class FilamentVoiceTextareaServiceProvider extends PackageServiceProvider
             $package->hasViews(static::$viewNamespace);
         }
 
-        // Publish JavaScript assets
+        // Publish assets for automatic loading
         $package->hasAssets();
     }
 
@@ -66,7 +66,7 @@ class FilamentVoiceTextareaServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        // Asset Registration
+        // Asset Registration - This ensures assets are automatically loaded
         FilamentAsset::register(
             $this->getAssets(),
             $this->getAssetPackageName()
@@ -79,6 +79,12 @@ class FilamentVoiceTextareaServiceProvider extends PackageServiceProvider
 
         // Icon Registration
         FilamentIcon::register($this->getIcons());
+
+        // Publish assets for manual publishing if needed
+        $this->publishes([
+            __DIR__ . '/../resources/dist/filament-voice-textarea.js' => public_path('vendor/filament-voice-textarea/filament-voice-textarea.js'),
+            __DIR__ . '/../resources/dist/filament-voice-textarea.css' => public_path('vendor/filament-voice-textarea/filament-voice-textarea.css'),
+        ], 'filament-voice-textarea-assets');
 
         // Handle Stubs
         if (app()->runningInConsole()) {
@@ -103,9 +109,19 @@ class FilamentVoiceTextareaServiceProvider extends PackageServiceProvider
      */
     protected function getAssets(): array
     {
+        $jsPath = __DIR__ . '/../resources/js/voice-textarea.js';
+        $cssPath = __DIR__ . '/../resources/css/voice-textarea.css';
+
+        // Check if built assets exist, otherwise use source files
+        $builtJsPath = __DIR__ . '/../resources/dist/filament-voice-textarea.js';
+        $builtCssPath = __DIR__ . '/../resources/dist/filament-voice-textarea.css';
+
+        $finalJsPath = file_exists($builtJsPath) ? $builtJsPath : $jsPath;
+        $finalCssPath = file_exists($builtCssPath) ? $builtCssPath : $cssPath;
+
         return [
-            Js::make('voice-textarea', __DIR__ . '/../resources/js/voice-textarea.js'),
-            Css::make('voice-textarea', __DIR__ . '/../resources/css/voice-textarea.css'),
+            Js::make('voice-textarea', $finalJsPath),
+            Css::make('voice-textarea', $finalCssPath),
         ];
     }
 

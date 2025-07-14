@@ -38,4 +38,14 @@ class VoiceTextarea extends Textarea
             'isVoiceEnabled' => $this->isVoiceEnabled(),
         ];
     }
+
+    // Add a method to help with debugging
+    public function getDebugInfo(): array
+    {
+        return [
+            'isVoiceEnabled' => $this->isVoiceEnabled(),
+            'view' => $this->getView(),
+            'viewExists' => view()->exists($this->getView()),
+        ];
+    }
 }
