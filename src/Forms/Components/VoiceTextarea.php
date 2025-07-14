@@ -38,6 +38,4 @@ class VoiceTextarea extends Textarea
             'isVoiceEnabled' => $this->isVoiceEnabled(),
         ];
     }
-
-
 }

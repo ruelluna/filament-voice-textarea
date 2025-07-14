@@ -25,10 +25,12 @@ class PublishVoiceTextareaAssetsCommand extends Command
         if ($filesystem->copy($sourcePath, $destinationPath)) {
             $this->info('Voice textarea assets published successfully!');
             $this->info('Assets are available at: ' . $destinationPath);
+
             return self::SUCCESS;
         }
 
         $this->error('Failed to publish voice textarea assets.');
+
         return self::FAILURE;
     }
 }

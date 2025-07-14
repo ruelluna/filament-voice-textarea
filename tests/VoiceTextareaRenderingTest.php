@@ -2,9 +2,8 @@
 
 namespace Ruelluna\FilamentVoiceTextarea\Tests;
 
-use Ruelluna\FilamentVoiceTextarea\Forms\Components\VoiceTextarea;
-use Filament\Forms\Form;
 use Livewire\Component;
+use Ruelluna\FilamentVoiceTextarea\Forms\Components\VoiceTextarea;
 
 class VoiceTextareaRenderingTest extends TestCase
 {
@@ -15,11 +14,12 @@ class VoiceTextareaRenderingTest extends TestCase
             ->label('Test Field');
 
         // Create a simple Livewire component to test rendering
-        $livewireComponent = new class extends Component {
+        $livewireComponent = new class extends Component
+        {
             public function render()
             {
                 return view('test-voice-textarea', [
-                    'field' => VoiceTextarea::make('test_field')->enableVoice()
+                    'field' => VoiceTextarea::make('test_field')->enableVoice(),
                 ]);
             }
         };
