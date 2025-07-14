@@ -2,8 +2,8 @@
 
 namespace Ruelluna\FilamentVoiceTextarea\Tests;
 
-use Ruelluna\FilamentVoiceTextarea\FilamentVoiceTextareaServiceProvider;
 use ReflectionClass;
+use Ruelluna\FilamentVoiceTextarea\FilamentVoiceTextareaServiceProvider;
 
 class VoiceTextareaAssetPathTest extends TestCase
 {
