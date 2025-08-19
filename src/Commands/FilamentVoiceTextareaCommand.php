@@ -86,10 +86,10 @@ class FilamentVoiceTextareaCommand extends Command
 
         // Recommendations
         $this->info('💡 Recommendations:');
-        if (!$registered) {
+        if (! $registered) {
             $this->line('1. Register the service provider in config/app.php');
         }
-        if (!file_exists($publishedJs) || !file_exists($publishedCss)) {
+        if (! file_exists($publishedJs) || ! file_exists($publishedCss)) {
             $this->line('2. Publish assets: php artisan vendor:publish --tag="filament-voice-textarea-assets"');
         }
         $this->line('3. Clear caches: php artisan config:clear && php artisan view:clear');
